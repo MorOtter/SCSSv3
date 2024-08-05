@@ -14,6 +14,7 @@ function shuffleArray(array) {
 
 //  get scales views
 router.get("/getScale", (req, res) => {
+  console.log("in to scales")
   let scales = ['/scales/sart', '/scales/nasa'];
   if (req.session.condition !== 'noAdvisor') {
     scales.push('/scales/tias');

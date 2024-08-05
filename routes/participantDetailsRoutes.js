@@ -49,6 +49,7 @@ router.post("/login", async (req, res) => {
     req.session.censoredArrayNumber = censoredArrayNumber;
     req.session.trialNumber = 0;
     req.session.getScales = false;
+    console.log(req.session.getScales);
     
     await req.dbServices.insertParticipant(participantId, condition, groupNumber, censoredInfo)
   

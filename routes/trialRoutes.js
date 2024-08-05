@@ -20,7 +20,7 @@ async function convertBlobToFile(blob) {
 
 
 // GET /game: Render the game page based on user group
-router.get('/game', async (req, res) => {
+router.get('/trial', async (req, res) => {
     // Ensure session is defined
     if (!req.session.condition) {
       return res.redirect('/');
@@ -55,7 +55,7 @@ router.get('/game', async (req, res) => {
     }
   
     // Pass recommendations to the view
-    res.render('game.ejs', { conditionText, group, censorship, censoredArrayNumber, packetArray: JSON.stringify(packetArray)});
+    res.render('trial.ejs', { conditionText, group, censorship, censoredArrayNumber, packetArray: JSON.stringify(packetArray)});
   });
   
   //  handle adding data to Experiment
