@@ -17,13 +17,13 @@
         "express": "^4.17.1",
         "express-flash": "^0.0.2",
         "express-session": "^1.17.1",
-        "jest": "^29.7.0",
         "method-override": "^3.0.0",
         "pg": "^8.5.1",
         "supertest": "^7.0.0",
         "uuid": "^8.3.2"
     },
     "devDependencies": {
+        "jest": "^29.7.0",
         "nodemon": "^3.1.4"
     }
 }

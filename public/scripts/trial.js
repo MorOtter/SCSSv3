@@ -179,14 +179,14 @@ const endTrial = () => {
 
 // handle participant input
 function handleInput(data) {
-  console.log(data);
+  const trialEndTime = new Date().toISOString();
   fetch('/trial/addTrial', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({input:data})
+    body: JSON.stringify({input:data, trialEndTime})
   }).then((response) => {
     console.log(response);
     if (response.ok) {

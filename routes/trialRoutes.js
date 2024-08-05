@@ -80,8 +80,8 @@ router.post("/addTrial", async (req, res) => {
     const blob = await req.flaskServices.downloadVideo();
     const filePath = convertBlobToFile(blob);
     const trialVideoUrl = `/${req.session.username}-${req.session.trialNumber}`
-    await req.cloudServices.uploadVideo(blob, trialVideoUrl)
-      .catch(console.error);
+    // await req.cloudServices.uploadVideo(blob, trialVideoUrl)
+    //   .catch(console.error);
     
   
     
@@ -99,7 +99,7 @@ router.post("/addTrial", async (req, res) => {
       await req.dbServices.insertPacket(trialId, input.user, input.advisor, input.accepted, input.time);
     }
 
-    res.sendStatus(200);
+    res.redirect("/information/rules")
 
 });
 
