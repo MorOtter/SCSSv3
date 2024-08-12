@@ -16,9 +16,7 @@ function shuffleArray(array) {
 router.get("/getScale", (req, res) => {
   console.log("in to scales")
   let scales = ['/scales/sart', '/scales/nasa'];
-  if (req.session.condition !== 'noAdvisor') {
-    scales.push('/scales/tias');
-  }
+  req.session.condition !== 'noAdvisor' ? scales.push('/scales/tias') : scales.push('/scales/nmrq');
   shuffleArray(scales);
   req.session.scales = scales;
   let nextScale = scales.pop();
@@ -76,4 +74,8 @@ router.get("/nasa", (req,res) => {
     res.render("nasa.ejs");
 });
 
-module.exports =   router;
+router.get("/nmrq", (req, res) => {
+  res.render("nmrq.ejs")
+})
+
+module.exports = router;
