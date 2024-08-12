@@ -1,6 +1,6 @@
 
 
-const configureConditions = id => {
+const configureConditions = participantId => {
     // set up experiment parameters
     const conditionNumber= participantId % 3;
     const groupNumber = parseInt(participantId) % 2;
@@ -24,7 +24,7 @@ const configureConditions = id => {
     const groupName = groupNumber === 0 ? "A" : 'B';
     const censorGroup = censorGroupNumber === 0 ? 'RIO' : 'SIO';
 
-    const censoredArrayNumber = censoredInfo === 'RIO' ? Math.floor(Math.random() * 3) : Math.floor(Math.random() * 4); 
+    const censoredArrayNumber = censorGroup === 'RIO' ? Math.floor(Math.random() * 3) : Math.floor(Math.random() * 4); 
 
     return {condition, groupName, censorGroup, censoredArrayNumber}
 };
