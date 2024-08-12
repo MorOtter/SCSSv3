@@ -5,7 +5,6 @@ if (process.env.NODE_ENV !== "production") {
   
 // Import modules and configurations
 const express = require('express');
-const Experiment = require('./public/scripts/experiment.js');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
@@ -23,7 +22,7 @@ const scalesRoutes = require("./routes/scalesRoutes.js");
 const trialRoutes = require("./routes/trialRoutes.js");
 const dbServices = require("./services/dbServices.js");
 const flaskServices = require("./services/flaskServices.js");
-const cloudServices = require("./services/cloudServices.js");fs.rmSync
+const cloudServices = require("./services/cloudServices.js");
 
   
 const app = express();
@@ -49,17 +48,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    req.flaskServices = flaskServices;
-    next();
-});
 
-
-
-app.use((req, res, next) => {
-    req.cloudServices = cloudServices;
-    next();
-})
 
 
 // Session Configuration

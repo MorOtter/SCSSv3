@@ -187,11 +187,13 @@ function handleInput(data) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({input:data, trialEndTime})
-  }).then((response) => {
-    console.log(response);
-    if (response.ok) {
-      window.location.href = '/information/rules';
+  }) .then(response => {
+    if(response.redirected) {
+      window.location.href = response.url;
     }
+  })
+  .catch(err => {
+    console.error(err)
   })
 
 }
