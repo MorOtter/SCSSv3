@@ -52,7 +52,7 @@ class Experiment {
     setPacketArray() {
         let packets = [];
         let quadrants = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
-        let types = ["neutral", "neutral", "safe", "safe", "hostile","hostile"];
+        let types = ["suspect", "suspect", "trusted", "trusted", "hostile","hostile"];
  
         for (let q of quadrants) {
             for (let t of types) {

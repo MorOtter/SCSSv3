@@ -36,13 +36,13 @@ while (count < numberWrong) {
     
     switch (advisorArray[index]) {
       case "hostile":
-        advisorArray[index] = Math.random() < .50 ? "safe" : "neutral";
+        advisorArray[index] = Math.random() < .50 ? "trusted" : "suspect";
         break;
-      case "safe":
-        advisorArray[index] = Math.random() < .50 ? "neutral" : "hostile";
+      case "trusted":
+        advisorArray[index] = Math.random() < .50 ? "suspect" : "hostile";
         break;
-      case "neutral":
-        advisorArray[index] = Math.random() < .50 ? "hostile" : "safe";
+      case "suspect":
+        advisorArray[index] = Math.random() < .50 ? "hostile" : "trusted";
     }
     count++;
   }
@@ -79,8 +79,8 @@ if (conditionText === "No Advisor") {
 initializeClassificationButtons();
 
 // Attach confirmation event
-document.getElementById("safe").addEventListener("click", () => confirmClassification(dotElement, selectedDotInfo, "safe"));
-document.getElementById("neutral").addEventListener("click", () => confirmClassification(dotElement, selectedDotInfo, "neutral"));
+document.getElementById("trusted").addEventListener("click", () => confirmClassification(dotElement, selectedDotInfo, "trusted"));
+document.getElementById("suspect").addEventListener("click", () => confirmClassification(dotElement, selectedDotInfo, "suspect"));
 document.getElementById("hostile").addEventListener("click", () => confirmClassification(dotElement, selectedDotInfo, "hostile"));
 
 // Define the `start` function to initialize the game

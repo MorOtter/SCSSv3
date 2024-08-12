@@ -1,7 +1,7 @@
 // import dataGenerator functions
 const { generateRandomCheckSum, generateRandomTime, generateRandomIP, generateRandomCountry } = require('./dataGenerators.js');
 
-// create overall packet - parameter = type of packet [hostile, safe , suspect]
+// create overall packet - parameter = type of packet [hostile, trusted , suspect]
 function PacketFactory(type) {
     let packet = {
         checkSum : generateRandomCheckSum(),
@@ -22,25 +22,25 @@ function PacketFactory(type) {
 function getRelevantInformation(type) {
     // When adding fourth RIO data add to this object
     let values = {
-        portNumber : {safe: 80, hostile: 4444},
-        protocol : {safe: 'HTTPS', hostile: 'ICMP'},
-        certificates : {safe: 'Valid', hostile: 'Expired'}
+        portNumber : {trusted: 80, hostile: 4444},
+        protocol : {trusted: 'HTTPS', hostile: 'ICMP'},
+        certificates : {trusted: 'Valid', hostile: 'Expired'}
     };
     let keys = Object.keys(values);
     keys = keys.sort(() => Math.random() - 0.5);
     let relevantInfo = {};
     switch (type) {
-        case 'safe':
-            keys.forEach(key => relevantInfo[key] = values[key].safe);
+        case 'trusted':
+            keys.forEach(key => relevantInfo[key] = values[key].trusted);
             break;
-        case 'neutral':
+        case 'suspect':
             let numHostileMin1 = Math.floor(Math.random() * 2) + 1;
-            keys.forEach(key => relevantInfo[key] = numHostileMin1-- > 0 ? values[key].hostile : values[key].safe);
+            keys.forEach(key => relevantInfo[key] = numHostileMin1-- > 0 ? values[key].hostile : values[key].trusted);
 
             break;
         case 'hostile':
             let numHostileMin3 = Math.floor(Math.random() * 2) + 3;
-            keys.forEach(key => relevantInfo[key] = numHostileMin3-- > 0 ? values[key].hostile : values[key].safe);
+            keys.forEach(key => relevantInfo[key] = numHostileMin3-- > 0 ? values[key].hostile : values[key].trusted);
             break;
     
         default:
@@ -106,7 +106,7 @@ function shuffleArray(array) {
 function setPacketArray() {
     let packets = [];
     let quadrants = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
-    let types = ["neutral", "neutral", "safe", "safe", "hostile","hostile"];
+    let types = ["suspect", "suspect", "trusted", "trusted", "hostile","hostile"];
 
     for (let q of quadrants) {
         for (let t of types) {

@@ -111,6 +111,10 @@ form {
   flex-direction: column;
 }
 
+.info.centered {
+  text-align: center;
+}
+
 .info h1 {
   align-self: center;
 }
@@ -191,12 +195,12 @@ form {
   color: #D9D9D9;
 }
 
-#safe:hover, #safe.active {
+#trusted:hover, #trusted.active {
   background-color: green;
   color: white;
 }
 
-#neutral:hover, #neutral.active {
+#suspect:hover, #suspect.active {
   background-color: yellow;
   color: #18171C;
 }
@@ -272,7 +276,7 @@ form {
   background-color: green;
 }
 
-.dot.neutral {
+.dot.suspect {
   background-color: yellow;
 }
 

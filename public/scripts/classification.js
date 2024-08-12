@@ -3,15 +3,15 @@ let selectedClassification = null;
 
 // Object containing classification button elements
 const classificationButtons = {
-  safe: document.getElementById("safe"),
-  neutral: document.getElementById("neutral"),
+  trusted: document.getElementById("trusted"),
+  suspect: document.getElementById("suspect"),
   hostile: document.getElementById("hostile")
 };
 
 // Initialize classification buttons with click event listeners
 export const initializeClassificationButtons = () => {
-  classificationButtons.safe.addEventListener("click", () => setClassification("safe"));
-  classificationButtons.neutral.addEventListener("click", () => setClassification("neutral"));
+  classificationButtons.trusted.addEventListener("click", () => setClassification("trusted"));
+  classificationButtons.suspect.addEventListener("click", () => setClassification("suspect"));
   classificationButtons.hostile.addEventListener("click", () => setClassification("hostile"));
 };
 
@@ -37,14 +37,14 @@ export const confirmClassification = (dotElement, selectedDotInfo, classificatio
 
     // Update the corresponding dot element's class based on the classification
     
-    dotElement.classList.remove('trusted', 'neutral', 'hostile');
+    dotElement.classList.remove('trusted', 'suspect', 'hostile');
 
     switch (selectedClassification) {
-      case "safe":
+      case "trusted":
         dotElement.classList.add('trusted');
         break;
-      case "neutral":
-        dotElement.classList.add('neutral');
+      case "suspect":
+        dotElement.classList.add('suspect');
         break;
       case "hostile":
         dotElement.classList.add('hostile');

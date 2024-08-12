@@ -95,8 +95,8 @@ describe('stopTrial function', () => {
         mockReq = {
             body : {
                 input : [{
-                    user: "safe",
-                    advisor: "neutral",
+                    user: "trusted",
+                    advisor: "suspect",
                     accepted: false,
                     time: '2023-01-01T00:00:00.000Z'
                 }],
@@ -160,8 +160,8 @@ describe('stopTrial function', () => {
 
         expect(dbServices.insertPacket).toHaveBeenCalledWith(
             trialId,
-            "safe",
-            "neutral",
+            "trusted",
+            "suspect",
             false,
             '2023-01-01T00:00:00.000Z'
         );
