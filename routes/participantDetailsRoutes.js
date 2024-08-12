@@ -1,6 +1,5 @@
 // imports
 const express = require('express');
-// import { insertParticipant, getNextId, insertFeedback } from '../services/dbServices';
 const setPacketArray = require('../public/scripts/packet');
 const {setUpParticipant, addFeedback} = require('../controllers/participantDetailsController');
 

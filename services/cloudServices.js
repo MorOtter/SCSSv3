@@ -6,30 +6,33 @@ const dotenv = require('dotenv');
 // set up config vars
 dotenv.config();
 
+const dbxConfig = {
+  fetch,
+  clientId: process.env.DROPBOX_KEY,
+  clientSecret : process.env.DROPBOX_SECRET,
+  refreshToken : process.env.DROPBOX_REFRESH_TOKEN,
+};
 
-const Dropbox = require('dropbox').Dropbox;
-const box = new Dropbox({accessToken: process.env.DROPBOX_TOKEN});
 
-box.usersGetCurrentAccount()
-    .then(function(res) {
-        console.log(res);
-    })
-    .catch(function(err) {
-        console.error(err);
-    })
+const {Dropbox} = require('dropbox');
+const dbx = new Dropbox(dbxConfig);
+
 
 async function uploadVideo(file, urlPath) {
     try {
-        const response = await box.filesUpload({path: urlPath, contents : file});
-        if (response.ok) {
-            console.log("uploaded successfully");
-        }
+      await dbx.auth.checkAndRefreshAccessToken()
+      const response = await dbx.filesUpload({path: urlPath, contents : file});
+      if (response.ok) {
+          console.log("uploaded successfully");
+      }
     } catch (err) {
         console.error("Error: ", err);
     }
 };
 
-const cloudServices = {uploadVideo}
+
+
+const cloudServices = {uploadVideo};
 
 
 module.exports = cloudServices;
