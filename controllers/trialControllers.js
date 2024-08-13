@@ -46,20 +46,21 @@ exports.startTrial = async (req, res, next) => {
     }
 }
 
-//  dates have been synced for tests but need to amend this
+
 
 exports.stopTrial = async (req, res, next) => {
     try {
         const trialEndTime = req.body["trialEndTime"];
         
         await flaskServices.handleRecording('stop');
-        await flaskServices.downloadVideo();
-        const trialVideoUrl = 'trial-url'; 
-        
+        const trialVideo = await flaskServices.downloadVideo();
+        const trialVideoName = `/EXP 1/${req.session.participantId} - ${req.session.trialNumber}`; 
+        await cloudServices.uploadVideo(trialVideo, trialVideoName)
+
         const trialType = req.session.trialNumber === 0 ? 'test' : 'main';
         
        
-        const trialId = await req.dbServices.insertTrial(req.session.username, trialType, req.session.trialNumber, req.session.trialStartTime, trialEndTime, trialVideoUrl);
+        const trialId = await req.dbServices.insertTrial(req.session.participantId, trialType, req.session.trialNumber, req.session.trialStartTime, trialEndTime, trialVideoName);
       
 
         req.session.trialNumber++;

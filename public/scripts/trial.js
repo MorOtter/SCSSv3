@@ -172,7 +172,6 @@ const endTrial = () => {
     }
     inputs.push({user : v.classification, advisor : v.recommendation, accepted : v.acceptedRecommendation, time : v.inputTime});
   }
-  console.log(inputs);
   handleInput(inputs);
 
 }

@@ -5,7 +5,6 @@ if (process.env.NODE_ENV !== "production") {
   
 // Import modules and configurations
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
@@ -13,16 +12,13 @@ const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const { Storage } = require('@google-cloud/storage');
 const crypto = require('crypto');
 const participantDetailsRoutes = require("./routes/participantDetailsRoutes.js");
 const informationRoutes = require("./routes/informationRoutes.js");
 const scalesRoutes = require("./routes/scalesRoutes.js");
 const trialRoutes = require("./routes/trialRoutes.js");
 const dbServices = require("./services/dbServices.js");
-const flaskServices = require("./services/flaskServices.js");
-const cloudServices = require("./services/cloudServices.js");
+
 
   
 const app = express();
