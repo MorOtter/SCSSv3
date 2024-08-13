@@ -3,7 +3,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const {startTrial, stopTrial} = require('../controllers/trialControllers');
+const {startTrial, stopTrial} = require('../controllers/trialController');
 
 const router = express.Router();
 
