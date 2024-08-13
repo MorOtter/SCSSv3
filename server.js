@@ -70,9 +70,11 @@ app.get('/', (req, res) => {
     res.render('information')
 })
 
+const PORT = process.env.PORT || 3000;
+
 // Start the server
-app.listen(5050, () => {
-    console.log(`Server running at http://localhost:5050`);
+app.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode at ${PORT}`);
 });
 
 module.exports = app;
