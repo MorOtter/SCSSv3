@@ -3,13 +3,24 @@
 const {Pool} = require('pg');
 
 // Set up connection to DB and CRUD ops
+
+// local development uncomment below
+
+// const pool = new Pool({
+//     user: process.env.DB_USER,
+//     host: process.env.DB_HOST,
+//     database: process.env.DB_DATABASE,
+//     password: process.env.DB_PASSWORD,
+//     port: process.env.DB_PORT,
+//   });
+
+//   hosted on heroku for my hosted version only
 const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-  });
+    connectionString: process.env.SUPABASE_DB_URL,
+    ssl:{
+        rejectUnauthorized: false
+    }
+});
   
 pool.connect()
     .then(() => console.log('Connected to PostgreSQL'))
