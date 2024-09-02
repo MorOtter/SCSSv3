@@ -43,9 +43,6 @@ const downloadVideo = async () => {
     }
 }
 
-const flaskServices = {
-    downloadVideo,
-    handleRecording
 };
 
 module.exports =  flaskServices;
